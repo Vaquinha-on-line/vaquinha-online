@@ -47,6 +47,56 @@ header img {
 
 .container {
   max-width: 1100px;
+  margin…
+[01:23, 26/02/2026] EzK: <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaquinha Solidária MG</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+  color: #333;
+}
+
+header {
+  background: white;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+header img {
+  width: 150px;
+}
+
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #2e7d32, #4CAF50);
+  color: white;
+}
+
+.hero h1 {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  max-width: 700px;
+  margin: auto;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1100px;
   margin: auto;
   padding: 30px 20px;
 }
@@ -116,18 +166,42 @@ button:hover {
 
 .galeria {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
 }
 
 .galeria img {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.galeria img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
 .info {
   font-size: 14px;
   line-height: 1.6;
+}
+
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal img {
+  max-width: 90%;
+  max-height: 85%;
+  border-radius: 10px;
 }
 
 /* RESPONSIVO PARA DESKTOP */
@@ -149,12 +223,12 @@ button:hover {
 </header>
 
 <section class="hero">
-  <h1>Reconstruindo Vidas em Minas Gerais !</h1>
+  <h1>Reconstruindo Vidas em Minas Gerais!</h1>
   <p>
     Nossa campanha solidária tem como objetivo arrecadar recursos para auxiliar
-    famílias afetadas nas cidades de Ubá e Juiz de Fora (MG).
-    Todo valor arrecadado será destinado à compra de alimentos, água potável,
-    roupas e apoio na reconstrução das áreas impactadas. Que Deus abençõe todas as familias afetadas!
+    famílias afetadas nas cidades de Ubá e Juiz de Fora (MG). Todo valor arrecadado
+    será destinado à compra de alimentos, água potável, roupas e apoio na reconstrução
+    das áreas impactadas. Que Deus abençoe todas as famílias afetadas!
   </p>
 </section>
 
@@ -164,7 +238,6 @@ button:hover {
 
     <!-- CARD DOAÇÃO -->
     <div class="card">
-
       <div class="meta-box">
         <strong>Meta:</strong> R$ 1.000.000<br>
         <strong>Arrecadado:</strong> R$ <span id="arrecadado">0,00</span>
@@ -175,23 +248,18 @@ button:hover {
       </div>
 
       <input type="number" id="valor" placeholder="Digite o valor da sua contribuição">
-
       <button onclick="checkout()">FAÇA SUA DOAÇÃO</button>
-
     </div>
 
     <!-- COMO FUNCIONA -->
     <div class="card info">
-      <h3>Como funciona nossa vaquinha ?</h3>
+      <h3>Como funciona nossa vaquinha?</h3>
       Nossa plataforma atua como intermediadora solidária cadastrada.
-      
       Após realizar sua contribuição via Pix ou checkout seguro,
       os valores são direcionados integralmente para aquisição de
       suprimentos essenciais e apoio logístico nas regiões afetadas.
-      
       Todas as doações serão apresentadas em nota ao final da campanha.
-      
-      Acompanhe nosso canal para doações de roupas, cobertores e acessorios úteis para a dificuldade no momento.
+      Acompanhe nosso canal para doações de roupas, cobertores e acessórios úteis para as famílias.
     </div>
 
     <!-- VÍDEO (SEM TÍTULO) -->
@@ -206,12 +274,12 @@ button:hover {
     <!-- GALERIA -->
     <div class="card">
       <div class="galeria">
-        <img src="destrocos2.jpg">
-        <img src="destrocos.jpg">
-        <img src="desmoronamento.jpg">
-        <img src="estamos.jpg">
-        <img src="doacaoagua.jpg">
-        <img src="doacaocomida.jpg">
+        <img src="desmoronamento.jpg" onclick="abrirModal(this)">
+        <img src="destrocos.jpg" onclick="abrirModal(this)">
+        <img src="destrocos2.jpg" onclick="abrirModal(this)">
+        <img src="doacaoagua.jpg" onclick="abrirModal(this)">
+        <img src="doacaocomida.jpg" onclick="abrirModal(this)">
+        <img src="estamos.jpg" onclick="abrirModal(this)">
       </div>
     </div>
 
@@ -219,9 +287,25 @@ button:hover {
 
 </div>
 
+<!-- MODAL -->
+<div id="modal" class="modal" onclick="fecharModal()">
+  <img id="imagemModal">
+</div>
+
 <script>
 const meta = 1000000;
 
+// Função para abrir o modal das imagens
+function abrirModal(img) {
+  document.getElementById("modal").style.display = "flex";
+  document.getElementById("imagemModal").src = img.src;
+}
+
+function fecharModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+// Checkout com validação de valor
 function checkout() {
   let valor = parseFloat(document.getElementById("valor").value);
 
@@ -230,7 +314,18 @@ function checkout() {
     return;
   }
 
-  // 🔹 AQUI VOCÊ VAI COLOCAR O LINK DO SEU CHECKOUT REAL
+  // Atualiza barra de progresso dinamicamente
+  let arrecadadoEl = document.getElementById("arrecadado");
+  let progressoEl = document.getElementById("progresso");
+
+  let arrecadadoAtual = parseFloat(arrecadadoEl.innerText.replace(/\./g,'').replace(',','.'));
+  arrecadadoAtual += valor;
+
+  arrecadadoEl.innerText = arrecadadoAtual.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
+  let porcentagem = (arrecadadoAtual / meta) * 100;
+  progressoEl.style.width = porcentagem + "%";
+
+  // 🔹 Aqui você coloca o link do checkout real
   // Exemplo Mercado Pago:
   // window.location.href = "https://link.mercadopago.com.br/sualoja";
 
