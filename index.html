@@ -1,11 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Vaquinha Online</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaquinha Online SOS MG</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.container {
+  background: white;
+  width: 420px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.08);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.descricao {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.meta-box {
+  margin-bottom: 10px;
+}
+
+.barra {
+  width: 100%;
+  background: #ddd;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.progresso {
+  height: 100%;
+  width: 0%;
+  background: #28a745;
+  transition: width 0.5s ease;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #218838;
+}
+
+#mensagem {
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+</style>
 </head>
+
 <body>
+
+<div class="container">
   <h1>Vaquinha Online</h1>
-  <p>Site em construção.</p>
+
+  <p class="descricao">
+    Estamos arrecadando fundos para nossa causa, nosso Brasil SOS MG.
+    Contribua com qualquer valor.
+  </p>
+
+  <div class="meta-box">
+    <strong>Meta:</strong> R$ 10.000<br>
+    <strong>Arrecadado:</strong> R$ <span id="arrecadado">0.00</span>
+  </div>
+
+  <div class="barra">
+    <div class="progresso" id="progresso"></div>
+  </div>
+
+  <input type="number" id="valor" placeholder="Digite o valor da doação">
+
+  <button onclick="doar()">Doar Agora</button>
+
+  <div id="mensagem"></div>
+</div>
+
+<script>
+let meta = 10000;
+let arrecadado = 0;
+
+function doar() {
+  let valor = parseFloat(document.getElementById("valor").value);
+
+  if (valor > 0) {
+    arrecadado += valor;
+
+    let porcentagem = (arrecadado / meta) * 100;
+    document.getElementById("progresso").style.width = porcentagem + "%";
+    document.getElementById("arrecadado").innerText = arrecadado.toFixed(2);
+    document.getElementById("mensagem").innerText = "Obrigado pela contribuição!";
+  } else {
+    document.getElementById("mensagem").innerText = "Digite um valor válido.";
+  }
+}
+</script>
+
 </body>
 </html>
