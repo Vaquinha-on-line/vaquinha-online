@@ -1,4 +1,4 @@
-[23:46, 25/02/2026] EzK: <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -6,167 +6,43 @@
 <title>Vaquinha Online</title>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
+  margin: 0;
   font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  display: flex;
-  justify-content: center;
-  padding: 40px;
+  background: #f2f4f7;
+}
+
+header {
+  background: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header img {
+  width: 140px;
 }
 
 .container {
+  padding: 20px;
+  max-width: 500px;
+  margin: auto;
+}
+
+.card {
   background: white;
-  width: 420px;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.08);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
 }
 
 h1 {
-  text-align: center;
+  font-size: 20px;
   margin-bottom: 10px;
-}
-
-.descricao {
-  text-align: center;
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-
-.meta-box {
-  margin-bottom: 10px;
-}
-
-.barra {
-  width: 100%;
-  background: #ddd;
-  height: 20px;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 15px;
-}
-
-.progresso {
-  height: 100%;
-  width: 0%;
-  background: #28a745;
-  transition: width 0.5s ease;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  background: #28a745;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-button:hover {
-  background: #218838;
-}
-
-#mensagem {
-  margin-top: 10px;
-  text-align: center;
-  font-weight: bold;
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-  <h1>Vaquinha Online</h1>
-
-  <p class="descricao">
-    Estamos arrecadando fundos para nosso projeto.
-    Contribua com qualquer valor.
-  </p>
-
-  <div class="meta-box">
-    <strong>Meta:</strong> R$ 10.000<br>
-    <strong>Arrecadado:</strong> R$ <span id="arrecadado">0.00</span>
-  </div>
-
-  <div class="barra">
-    <div class="progresso" id="progresso"></div>
-  </div>
-
-  <input type="number" id="valor" placeholder="Digite o valor da doação">
-
-  <button onclick="doar()">Doar Agora</button>
-
-  <div id="mensagem"></div>
-</div>
-
-<script>
-let meta = 10000;
-let arrecadado = 0;
-
-function doar() {
-  let valor = parseFloat(document.getElementById("valor").value);
-
-  if (valor > 0) {
-    arrecadado += valor;
-
-    let porcentagem = (arrecadado / meta) * 100;
-    document.getElementById("progresso").style.width = porcentagem + "%";
-    document.getElementById("arrecadado").innerText = arrecadado.toFixed(2);
-    document.getElementById("mensagem").innerText = "Obrigado pela contribuição!";
-  } else {
-    document.getElementById("mensagem").innerText = "Digite um valor válido.";
-  }
-}
-</script>
-
-</body>
-</html>
-[23:51, 25/02/2026] EzK: <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vaquinha Online</title>
-
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #4CAF50, #2e7d32);
-  display: flex;
-  justify-content: center;
-  padding: 40px;
-  margin: 0;
-}
-
-.container {
-  background: white;
-  width: 420px;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-}
-
-.logo {
-  text-align: center;
-  font-size: 22px;
-  font-weight: bold;
-  color: #2e7d32;
-  margin-bottom: 5px;
-}
-
-.subtitulo {
-  text-align: center;
-  font-size: 14px;
-  color: #777;
-  margin-bottom: 20px;
 }
 
 .meta-box {
@@ -177,8 +53,8 @@ body {
 .barra {
   width: 100%;
   background: #e0e0e0;
-  height: 22px;
-  border-radius: 12px;
+  height: 20px;
+  border-radius: 10px;
   overflow: hidden;
   margin-bottom: 15px;
 }
@@ -187,7 +63,7 @@ body {
   height: 100%;
   width: 0%;
   background: linear-gradient(90deg, #4CAF50, #2e7d32);
-  transition: width 0.5s ease;
+  transition: width 0.4s ease;
 }
 
 input {
@@ -196,7 +72,6 @@ input {
   border-radius: 8px;
   border: 1px solid #ccc;
   margin-bottom: 10px;
-  font-size: 14px;
 }
 
 button {
@@ -206,34 +81,107 @@ button {
   color: white;
   border: none;
   border-radius: 8px;
-  cursor: pointer;
+  font-weight: bold;
   font-size: 16px;
-  font-weight: bold;
+  cursor: pointer;
 }
 
-button:hover {
-  background: #1b5e20;
-}
-
-#mensagem {
+.pix-box {
+  background: #f8fff9;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 14px;
   margin-top: 10px;
-  text-align: center;
-  font-weight: bold;
-  color: #2e7d32;
 }
 
-.transparencia {
-  margin-top: 20px;
-  font-size: 12px;
-  color: #555;
-  text-align: center;
+.video-container iframe {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.galeria img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 </style>
 </head>
 
 <body>
 
+<header>
+  <!-- COLOQUE A IMAGEM DO LOGO AQUI -->
+  <img src="logo.png" alt="Logo Vaquinha">
+</header>
+
 <div class="container">
 
-  <div class="logo">Vaquinha Online</div>
-  <div class="subtitulo">Contribua e acompanhe o
+  <!-- CARD VAQUINHA -->
+  <div class="card">
+    <h1>Ajude Nossa Causa</h1>
+
+    <div class="meta-box">
+      <strong>Meta:</strong> R$ 10.000<br>
+      <strong>Arrecadado:</strong> R$ <span id="arrecadado">0.00</span>
+    </div>
+
+    <div class="barra">
+      <div class="progresso" id="progresso"></div>
+    </div>
+
+    <input type="number" id="valor" placeholder="Digite o valor da doação">
+
+    <button onclick="mostrarPix()">DOAR VIA PIX</button>
+
+    <div class="pix-box" id="pixBox" style="display:none;">
+      <strong>Chave Pix:</strong><br>
+      email@exemplo.com<br><br>
+      Após o pagamento, envie o comprovante para confirmação.
+    </div>
+  </div>
+
+  <!-- CARD VIDEO -->
+  <div class="card">
+    <h1>Vídeo da Campanha</h1>
+    <div class="video-container">
+      <!-- SUBSTITUA O LINK DO YOUTUBE AQUI -->
+      <iframe height="220"
+        src="https://www.youtube.com/embed/VIDEO_ID"
+        frameborder="0"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <!-- CARD GALERIA -->
+  <div class="card">
+    <h1>Imagens da Causa</h1>
+    <div class="galeria">
+      <!-- ADICIONE SUAS IMAGENS AQUI -->
+      <img src="imagem1.jpg">
+      <img src="imagem2.jpg">
+    </div>
+  </div>
+
+</div>
+
+<script>
+let meta = 10000;
+let arrecadado = 0;
+
+function mostrarPix() {
+  let valor = parseFloat(document.getElementById("valor").value);
+  if (valor > 0) {
+    document.getElementById("pixBox").style.display = "block";
+    arrecadado += valor;
+    let porcentagem = (arrecadado / meta) * 100;
+    document.getElementById("progresso").style.width = porcentagem + "%";
+    document.getElementById("arrecadado").innerText = arrecadado.toFixed(2);
+  } else {
+    alert("Digite um valor válido.");
+  }
+}
+</script>
+
+</body>
+</html>
